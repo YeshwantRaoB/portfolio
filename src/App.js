@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -11,8 +11,11 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Achievements from './components/Achievements';
 import ScrollToTop from './components/ScrollToTop';
+import Loader from './components/Loader'; // ✅ Add this import
+
 function App() {
   const [darkMode, setDarkMode] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // Apply dark mode
@@ -24,13 +27,13 @@ function App() {
 
     // Initialize AOS animations
     AOS.init({
-      duration: 800,         // animation duration in ms
-      easing: 'ease-in-out', // easing function
-      once: true,            // animate only once on scroll
-      mirror: false,         // don't repeat on scroll back
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true,
+      mirror: false,
     });
 
-    // Smooth scrolling animation
+    // Smooth scroll for internal anchor links
     const scrollSmoothly = () => {
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener('click', (event) => {
@@ -38,10 +41,10 @@ function App() {
           const targetId = anchor.getAttribute('href').slice(1);
           const targetElement = document.getElementById(targetId);
           if (targetElement) {
-            targetElement.scrollIntoView({ 
-              behavior: 'smooth', 
-              block: 'start', 
-              inline: 'nearest' 
+            targetElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start',
+              inline: 'nearest',
             });
           }
         });
@@ -49,19 +52,32 @@ function App() {
     };
 
     scrollSmoothly();
+
+    // Simulate loading time (e.g., waiting for assets)
+    const timeout = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000); // 2 seconds
+
+    return () => clearTimeout(timeout);
   }, [darkMode]);
 
   return (
     <div className="font-poppins bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
-      <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
-      <Hero />
-      <About />
-      <Projects />
-      <Skills />
-      <Achievements />
-      <Contact />
-      <Footer />
-      <ScrollToTop />
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+          <Hero />
+          <About />
+          <Projects />
+          <Skills />
+          <Achievements />
+          <Contact />
+          <Footer />
+          <ScrollToTop />
+        </>
+      )}
     </div>
   );
 }
