@@ -23,13 +23,13 @@ const contactLinks = [
     color: "bg-gray-800 hover:bg-gray-900",
   },
   {
-    href: "https://instagram.com/",
+    href: "https://instagram.com/yeshwant_rao_",
     label: "Instagram",
     icon: <FaInstagram />,
     color: "bg-pink-500 hover:bg-pink-600",
   },
   {
-    href: "https://youtube.com/",
+    href: "https://youtube.com/@raobyeshwant",
     label: "YouTube",
     icon: <FaYoutube />,
     color: "bg-red-600 hover:bg-red-700",
