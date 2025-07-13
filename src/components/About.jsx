@@ -82,7 +82,7 @@ export default function About() {
           <ReactTyped
             strings={[
               "I'm a passionate 3rd-year Diploma student in Computer Science, specializing in Cyber Security.",
-              "I love building secure systems, leading teams, and speaking in public forums.",
+              "I love building systems, securing & optimizing them.",
               "Driven by curiosity, focused on excellence, and inspired to innovate."
             ]
             }
@@ -101,7 +101,8 @@ export default function About() {
           viewport={{ once: true }}
         >
           {[
-            'Cyber Security Enthusiast',
+            'Tech Enthusiast',
+            'FOSS Advocate',
             'Public Speaker',
             'Team Leader',
             'Creative Thinker',
