@@ -43,15 +43,14 @@ const Navbar = ({ darkMode, setDarkMode }) => {
         {/* Navigation Links and Dark Mode Toggle */}
         <div className="flex items-center gap-6">
           {['About', 'Projects', 'Skills', 'Achievements', 'Contact'].map((section) => (
-  <a
-    key={section}
-    href={`#${section.toLowerCase()}`}
-    className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition px-2 py-1 rounded hover:bg-blue-50 dark:hover:bg-gray-700"
-  >
-    {section}
-  </a>
-))}
-
+            <a
+              key={section}
+              href={`#${section.toLowerCase().replace('skills', 'skills')}`}
+              className="text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 font-medium transition px-2 py-1 rounded hover:bg-blue-50 dark:hover:bg-gray-700"
+            >
+              {section}
+            </a>
+          ))}
           <button
             onClick={() => setDarkMode(!darkMode)}
             className="text-xl text-gray-600 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition p-2 rounded-full bg-gray-100 dark:bg-gray-700"
