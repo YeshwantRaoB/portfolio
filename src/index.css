@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* optional global styling */
+html {
+  scroll-behavior: smooth;
+}
+
+
+.glitch-text {
+  position: relative;
+  color: #00ffff;
+  font-weight: 700;
+  animation: glitch-skew 1.5s infinite linear alternate;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+.glitch-text::before {
+  animation: glitch-anim 2s infinite linear alternate-reverse;
+  color: #ff00c8;
+  z-index: -1;
+}
+
+.glitch-text::after {
+  animation: glitch-anim2 3s infinite linear alternate-reverse;
+  color: #00ffea;
+  z-index: -2;
+}
+
+@keyframes glitch-skew {
+  0% {
+    transform: skew(0deg);
+  }
+  20% {
+    transform: skew(2deg);
+  }
+  40% {
+    transform: skew(-2deg);
+  }
+  60% {
+    transform: skew(1deg);
+  }
+  80% {
+    transform: skew(-1deg);
+  }
+  100% {
+    transform: skew(0deg);
+  }
+}
+
+@keyframes glitch-anim {
+  0% {
+    clip: rect(10px, 9999px, 50px, 0);
+    transform: translate(-2px, -2px);
+  }
+  20% {
+    clip: rect(85px, 9999px, 140px, 0);
+    transform: translate(2px, 1px);
+  }
+  40% {
+    clip: rect(20px, 9999px, 60px, 0);
+    transform: translate(-1px, 2px);
+  }
+  60% {
+    clip: rect(70px, 9999px, 110px, 0);
+    transform: translate(3px, -1px);
+  }
+  80% {
+    clip: rect(40px, 9999px, 80px, 0);
+    transform: translate(-3px, 0px);
+  }
+  100% {
+    clip: rect(90px, 9999px, 130px, 0);
+    transform: translate(0px, 0px);
+  }
+}
+
+@keyframes glitch-anim2 {
+  0% {
+    clip: rect(15px, 9999px, 60px, 0);
+    transform: translate(2px, -1px);
+  }
+  20% {
+    clip: rect(90px, 9999px, 120px, 0);
+    transform: translate(-1px, 1px);
+  }
+  40% {
+    clip: rect(45px, 9999px, 95px, 0);
+    transform: translate(1px, -2px);
+  }
+  60% {
+    clip: rect(25px, 9999px, 75px, 0);
+    transform: translate(0px, 2px);
+  }
+  80% {
+    clip: rect(60px, 9999px, 100px, 0);
+    transform: translate(-2px, -1px);
+  }
+  100% {
+    clip: rect(5px, 9999px, 55px, 0);
+    transform: translate(0px, 0px);
+  }
+}
