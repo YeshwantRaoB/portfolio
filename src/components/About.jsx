@@ -126,7 +126,7 @@ export default function About() {
           viewport={{ once: true }}
         >
           <a
-            href="/your-resume.pdf"
+            href="/YeshwantRaoB_Resume.pdf"
             download
             className="inline-flex items-center gap-2 px-7 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-lg transition font-semibold text-base"
           >
