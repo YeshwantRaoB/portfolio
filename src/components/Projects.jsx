@@ -12,7 +12,7 @@ const projects = [
   {
     id: 1,
     title: 'Custom Linux Distro',
-    desc: 'Built an Linux Operating System from scratch, (implemented used "Linux from Scratch" project).',
+    desc: 'Built an Linux Operating System from scratch, (implemented using the "Linux from Scratch" project).',
     details: 'Used Linux From Scratch. Hardened kernel. Included tools like Wireshark, Nmap, and a custom scriptable firewall.',
     images: [
       'https://i0.wp.com/9to5linux.com/wp-content/uploads/2020/03/lfs.jpg?fit=1200%2C800&ssl=1',
