@@ -25,7 +25,7 @@ const Footer = () => {
           </span>{' '}
           | All rights reserved.
         </motion.p>
-        <motion.p
+   {/*      <motion.p
           data-aos="fade-up" className="text-sm text-blue-700 dark:text-blue-400"
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -35,7 +35,7 @@ const Footer = () => {
           Made with{' '}
           <span className="animate-pulse text-pink-500">♥</span> in Mangalore,
           India
-        </motion.p>
+        </motion.p> */}
         <motion.div
           data-aos="fade-up" className="mt-4"
           initial={{ opacity: 0, scale: 0.95 }}
@@ -43,9 +43,9 @@ const Footer = () => {
           transition={{ duration: 0.7, delay: 0.4 }}
           viewport={{ once: true }}
         >
-          <span className="inline-block px-4 py-2 rounded-full bg-blue-50 dark:bg-blue-900 text-blue-700 dark:text-blue-200 font-semibold shadow transition-all duration-300">
+          {/* <span className="inline-block px-4 py-2 rounded-full bg-blue-50 dark:bg-blue-900 text-blue-700 dark:text-blue-200 font-semibold shadow transition-all duration-300">
             Portfolio v1.0
-          </span>
+          </span> */}
         </motion.div>
       </motion.div>
     </footer>
