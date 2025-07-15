@@ -81,7 +81,7 @@ export default function About() {
         >
           <ReactTyped
             strings={[
-              "I'm a passionate 3rd-year Diploma student in Computer Science, specializing in Cyber Security.",
+              "I'm a passionate 3rd-year Diploma student in Computer Science, specializing in Full Stack Development.",
               "I love building systems, securing & optimizing them.",
               "Driven by curiosity, focused on excellence, and inspired to innovate."
             ]
