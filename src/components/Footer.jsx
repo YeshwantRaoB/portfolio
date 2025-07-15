@@ -1,8 +1,25 @@
-// src/components/Footer.jsx
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { Counter } from 'counterapi';
 
 const Footer = () => {
+  const [views, setViews] = useState(null);
+
+ useEffect(() => {
+    const counter = new Counter({
+      workspace: 'yeshwantrao'  // Replace with your actual workspace
+    });
+
+    counter.up('yeshwant-portfolio') // Your actual counter name
+      .then(result => {
+        setViews(result.data.count); // ✅ FIXED: get the actual count
+      })
+      .catch(err => {
+        console.error('CounterAPI error:', err);
+        setViews(null);
+      });
+  }, []);
+
   return (
     <footer className="bg-gradient-to-r from-blue-100 via-white to-blue-200 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-8 px-6 border-t border-blue-200 dark:border-blue-900">
       <motion.div
@@ -19,34 +36,21 @@ const Footer = () => {
           transition={{ duration: 0.7, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          © {new Date().getFullYear()}{' '}
+          &copy; {new Date().getFullYear()}{' '}
           <span className="font-bold text-blue-700 dark:text-blue-400">
             Yeshwant Rao
           </span>{' '}
           | All rights reserved.
         </motion.p>
-   {/*      <motion.p
-          data-aos="fade-up" className="text-sm text-blue-700 dark:text-blue-400"
+        <motion.p
+          data-aos="fade-up" className="text-xs text-gray-500 dark:text-gray-500 mt-1"
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
           viewport={{ once: true }}
         >
-          Made with{' '}
-          <span className="animate-pulse text-pink-500">♥</span> in Mangalore,
-          India
-        </motion.p> */}
-        <motion.div
-          data-aos="fade-up" className="mt-4"
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, delay: 0.4 }}
-          viewport={{ once: true }}
-        >
-          {/* <span className="inline-block px-4 py-2 rounded-full bg-blue-50 dark:bg-blue-900 text-blue-700 dark:text-blue-200 font-semibold shadow transition-all duration-300">
-            Portfolio v1.0
-          </span> */}
-        </motion.div>
+          👁 Visitors: <span className="font-semibold text-blue-600">{views ?? '...'} </span>
+        </motion.p>
       </motion.div>
     </footer>
   );
