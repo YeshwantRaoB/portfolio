@@ -1,105 +1,66 @@
-// src/components/Navbar.jsx
-import React, { useEffect, useRef, useState } from 'react';
-import { FaMoon, FaSun } from 'react-icons/fa';
+import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { Counter } from 'counterapi';
 
-const sections = ['about', 'projects', 'skills', 'achievements', 'contact'];
+const Footer = () => {
+  const [views, setViews] = useState(null);
 
-const Navbar = ({ darkMode, setDarkMode }) => {
-  const [showNavbar, setShowNavbar] = useState(false);
-  const [activeSection, setActiveSection] = useState('');
-  const [underlineStyle, setUnderlineStyle] = useState({});
-  const linkRefs = useRef({});
-
-  // Handle scroll and active section
   useEffect(() => {
-    const handleScroll = () => {
-      setShowNavbar(window.scrollY > 20);
-      const scrollY = window.scrollY + 150;
-
-      let current = '';
-      sections.forEach((id) => {
-        const section = document.getElementById(id);
-        if (section && section.offsetTop <= scrollY) {
-          current = id;
-        }
-      });
-
-      if (current !== activeSection) {
-        setActiveSection(current);
+    const fetchViews = async () => {
+      try {
+        const counter = new Counter({ workspace: 'Fstac' }); // ✅ Your workspace
+        const result = await counter.up('yeshwant-portfolio'); // ✅ Your counter name
+        setViews(result.data.count); // ✅ Access the actual count
+      } catch (err) {
+        console.error('CounterAPI error:', err);
+        setViews(null);
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [activeSection]);
-
-  // Update underline position
-  useEffect(() => {
-    const el = linkRefs.current[activeSection];
-    if (el) {
-      const rect = el.getBoundingClientRect();
-      const parentRect = el.parentElement.getBoundingClientRect();
-      setUnderlineStyle({
-        left: rect.left - parentRect.left + 'px',
-        width: rect.width + 'px',
-      });
-    }
-  }, [activeSection]);
+    fetchViews();
+  }, []);
 
   return (
-    <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out
-        ${showNavbar ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-6'}
-        bg-white/70 dark:bg-gray-800/70 backdrop-blur-md shadow-lg border-b border-gray-200 dark:border-gray-700
-      `}
-    >
-      <div className="container mx-auto px-6 py-3 flex justify-between items-center rounded-xl relative">
-        {/* Logo */}
-        <a href="#hero" className="flex items-center gap-3 group">
-          <span className="inline-block w-9 h-9 rounded-full bg-blue-600 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform overflow-hidden">
-            <img
-              src={require('../assets/logo.jpg')}
-              alt="Logo"
-              className="w-8 h-8 object-cover rounded-full"
-            />
-          </span>
-          <span className="text-2xl font-extrabold tracking-tight text-blue-600 dark:text-blue-400 drop-shadow group-hover:text-blue-800 dark:group-hover:text-blue-300 transition-colors">
+    <footer className="bg-gradient-to-r from-blue-100 via-white to-blue-200 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-8 px-6 border-t border-blue-200 dark:border-blue-900">
+      <motion.div
+        data-aos="fade-up"
+        className="max-w-4xl mx-auto flex flex-col items-center"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+      >
+        <motion.p
+          data-aos="fade-up"
+          className="text-gray-600 dark:text-gray-300 text-base mb-2 font-medium"
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
+          &copy; {new Date().getFullYear()}{' '}
+          <span className="font-bold text-blue-700 dark:text-blue-400">
             Yeshwant Rao
-          </span>
-        </a>
-
-        {/* Navigation Links */}
-        <div className="relative flex items-center gap-6">
-          {sections.map((section) => (
-            <a
-              key={section}
-              href={`#${section}`}
-              ref={(el) => (linkRefs.current[section] = el)}
-              className={`relative capitalize px-2 py-1 text-gray-700 dark:text-gray-200 font-medium transition hover:text-blue-600 dark:hover:text-blue-400`}
-            >
-              {section}
-            </a>
-          ))}
-
-          {/* Sliding underline */}
-          <span
-            className="absolute bottom-0 h-[2px] bg-blue-600 dark:bg-blue-400 transition-all duration-500 ease-in-out rounded-full"
-            style={underlineStyle}
-          />
-
-          {/* Dark Mode Button */}
-          <button
-            onClick={() => setDarkMode(!darkMode)}
-            className="ml-3 text-xl text-gray-600 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400 transition p-2 rounded-full bg-gray-100 dark:bg-gray-700"
-            aria-label="Toggle Dark Mode"
-          >
-            {darkMode ? <FaSun /> : <FaMoon />}
-          </button>
-        </div>
-      </div>
-    </nav>
+          </span>{' '}
+          | All rights reserved.
+        </motion.p>
+        <motion.p
+          data-aos="fade-up"
+          className="text-xs text-gray-500 dark:text-gray-500 mt-1"
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.3 }}
+          viewport={{ once: true }}
+        >
+          👁    |    Total Visitors  :{' '}
+        <span className="font-bold text-blue-700 dark:text-blue-400">
+        <a href="" target="_blank">
+        <img src="https://hitwebcounter.com/counter/counter.php?page=21180447&style=0010&nbdigits=5&type=page&initCount=356" title="Counter Widget" Alt="Visit counter For Websites"   border="0" /></a>      
+        </span>
+        </motion.p>
+      </motion.div>
+    </footer>
   );
 };
 
-export default Navbar;
+export default Footer;
