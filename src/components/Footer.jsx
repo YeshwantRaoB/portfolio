@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Counter } from 'counterapi';
 
 const Footer = () => {
-  const [views, setViews] = useState(null);
+  const [,setViews] = useState(null);
 
   useEffect(() => {
     const fetchViews = async () => {
@@ -18,7 +18,7 @@ const Footer = () => {
     };
 
     fetchViews();
-  }, []);
+  },);
 
   return (
     <footer className="bg-gradient-to-r from-blue-100 via-white to-blue-200 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-8 px-6 border-t border-blue-200 dark:border-blue-900">
