@@ -53,10 +53,8 @@ const Footer = () => {
           viewport={{ once: true }}
         >
           👁    |    Total Visitors  :{' '}
-        <span className="font-bold text-blue-700 dark:text-blue-400">
-        <a href="" target="_blank">
-        <img src="https://hitwebcounter.com/counter/counter.php?page=21180447&style=0010&nbdigits=5&type=page&initCount=356" title="Counter Widget" Alt="Visit counter For Websites"   border="0" /></a>      
-        </span>
+        
+        <img src="https://hitwebcounter.com/counter/counter.php?page=21180447&style=0010&nbdigits=5&type=page&initCount=356" title="Counter Widget" Alt="Visit counter For Websites"   border="0" />
         </motion.p>
       </motion.div>
     </footer>
